@@ -1,0 +1,70 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	
+	<head>
+		<title>Organization Staff List</title>
+		
+		<link rel="stylesheet" 
+			type="text/css" 
+			href="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.css" />
+		<link rel="stylesheet" 
+			href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" 
+			integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" 
+			crossorigin="anonymous" />
+	</head>
+	
+	<body>
+		
+		<div class="container">
+		
+			<h3>Staff List and Details</h3>
+			
+			<hr/>
+			<a th:href="@{/addnewstaff}" class="btn btn-primary">Add New Staff</a>
+			<br/><br/>
+			<table class="table table-bordered table-striped" id="staffInfoTable">
+			
+				<thead>
+					<tr>
+					    <th>S.No</th>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Email Id</th>
+						<th>CTC</th>
+						<th>Designation</th>
+						<th>Operations</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="staff: ${staffList}">
+					    <td th:text="${staff.sNo}" />
+						<td th:text="${staff.firstName}" />
+						<td th:text="${staff.lastName}" />
+						<td th:text="${staff.emailId}" />
+						<td th:text="${staff.ctc}" />
+						<td th:text="${staff.designation}" />
+						<td>
+							<a th:href="@{/showUpdateForm(staffId=${staff.id})}" class="btn btn-info">Edit</a>
+							
+							<a th:href="@{/deleteStaff(staffId=${staff.id})}" class="btn btn-danger ml-2">Delete</a>
+						</td>
+					</tr>
+				</tbody>
+				
+			</table>
+		</div>
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.js"></script>
+		<script>
+			$(document).ready(function() {
+				$("#staffInfoTable").DataTable({
+						'aoColumnDefs': [{
+        				'bSortable': false,
+        				'aTargets': [-1] 
+    				}]
+				});
+			})
+		</script>
+	</body>
+	
+</html>
