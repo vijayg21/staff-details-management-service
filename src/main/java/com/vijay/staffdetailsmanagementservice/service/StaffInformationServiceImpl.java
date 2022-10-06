@@ -1,6 +1,8 @@
 package com.vijay.staffdetailsmanagementservice.service;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,8 +18,13 @@ public class StaffInformationServiceImpl implements StaffInformationService{
 
 	@Override
 	public List<StaffInformationEntity> getAllStaffDetails() {
-		// TODO Auto-generated method stub
-		return staffInformationRepository.findAll();
+		AtomicInteger atomicInteger = new AtomicInteger(0);
+		List<StaffInformationEntity> staffInformationEntities = staffInformationRepository.findAll();
+		staffInformationEntities = staffInformationEntities.stream().map(staff -> {
+			staff.setsNo(atomicInteger.incrementAndGet());
+			return staff;
+		}).collect(Collectors.toList());
+		return staffInformationEntities ;
 	}
 
 	@Override

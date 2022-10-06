@@ -10,8 +10,9 @@
 	</head>
 	<body>
 		
-		<div class="container">
+		<div class="container" align="center">
 		
+		</br></br></br></br></br>
 			<h3>Add New Staff Here</h3>
 			<hr/>
 			
@@ -27,12 +28,12 @@
 				
 				<input type="text" th:field="*{designation}" class="form-control col-4 mb-4" placeholder="Enter Designation" />
 				
-				<button type="submit" class="btn btn-primary col-2">Save</button>
+				<button type="submit" class="btn btn-primary col-1">Save</button>
 				<input type="hidden" th:field="*{id}" />
-				
+				<a th:href="@{/stafflist}" class="btn btn-danger m-2">Cancel</a>
 			</form>
 			<hr/>
-			<a th:href="@{/stafflist}" class="btn btn-info">Cancel</a>
+			
 		</div>
 		
 	</body>

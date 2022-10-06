@@ -25,14 +25,7 @@ public class StaffInformationController {
 	@GetMapping({"/stafflist", "/"})
 	public ModelAndView getAllStaffs() {
 		ModelAndView mav = new ModelAndView("staff-information-list");
-		AtomicInteger atomicInteger = new AtomicInteger(0);
-		int c = 0;
-		List<StaffInformationEntity> staffInformationEntities = staffInformationService.getAllStaffDetails();
-		staffInformationEntities = staffInformationEntities.stream().map(staff -> {
-			staff.setsNo(atomicInteger.incrementAndGet());
-			return staff;
-		}).collect(Collectors.toList());
-		mav.addObject("staffList", staffInformationEntities);
+		mav.addObject("staffList", staffInformationService.getAllStaffDetails());
 		return mav;
 	}
 	
