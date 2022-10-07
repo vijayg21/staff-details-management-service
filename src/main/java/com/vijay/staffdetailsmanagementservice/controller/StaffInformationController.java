@@ -5,6 +5,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import com.vijay.staffdetailsmanagementservice.entity.StaffInformationEntity;
+import com.vijay.staffdetailsmanagementservice.entity.UserInfomation;
 import com.vijay.staffdetailsmanagementservice.service.StaffInformationService;
 
 
@@ -26,6 +29,7 @@ public class StaffInformationController {
 	public ModelAndView getAllStaffs() {
 		ModelAndView mav = new ModelAndView("staff-information-list");
 		mav.addObject("staffList", staffInformationService.getAllStaffDetails());
+		mav.addObject("userInfo", staffInformationService.getUserInformation());
 		return mav;
 	}
 	

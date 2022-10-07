@@ -5,9 +5,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.vijay.staffdetailsmanagementservice.entity.StaffInformationEntity;
+import com.vijay.staffdetailsmanagementservice.entity.UserInfomation;
 import com.vijay.staffdetailsmanagementservice.repository.StaffInformationRepository;
 
 @Service
@@ -42,6 +45,14 @@ public class StaffInformationServiceImpl implements StaffInformationService{
 	public void deleteStaffInformationById(Long staffId) {
 		staffInformationRepository.deleteById(staffId);
 		
+	}
+
+	@Override
+	public UserInfomation getUserInformation() {
+		UserInfomation userInfo = new UserInfomation();
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		userInfo.setLoggedInUserName(authentication.getName());
+		return userInfo;
 	}
 	
 

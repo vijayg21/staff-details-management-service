@@ -14,9 +14,14 @@
 	
 	<body>
 		
-		<div class="container">
+		<div class="container" >
 		
 			<h3 align="center" >Staff List and Details</h3>
+			<div align="right">
+			<p style="color:green">Logged in as : 
+			<label th:text = "${userInfo.loggedInUserName}"></label>
+			<a th:href="@{/logout}" class="btn btn-info" >Logout</a></p>
+			</div>
 			
 			<hr/>
 			<div align="right">
